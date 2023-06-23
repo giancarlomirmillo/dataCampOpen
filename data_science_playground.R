@@ -76,4 +76,28 @@ ggbetweenstats(ilMioSecondoDF,  BMI, media.voti,  outlier.tagging = TRUE)
 #grafico a torta 
 ggpiestats(ilMioSecondoDF, BMI, media.voti) 
 
+# cluster algoritmo NON supervisionato
+library(ClusterR)
+library(cluster)
+set.seed(240) # Setting seed
+kmeans.re <- kmeans(ilMioPrimoDFNumerico, centers = 3, nstart = 20)
+kmeans.re$size
 
+cm <- table(ilMioPrimoDFNumerico$altezza, kmeans.re$cluster)
+cm
+
+## Visualizing clusters
+
+y_kmeans <- kmeans.re$cluster
+clusplot(ilMioPrimoDFNumerico[, c("anni", "altezza")],
+         y_kmeans,
+         lines = 0,
+         shade = TRUE,
+         color = TRUE,
+         labels = 2,
+         plotchar = FALSE,
+         span = TRUE,
+         main = paste("Cluster") ,
+         xlab = 'Anni',
+         ylab = 'Altezza')
+         
