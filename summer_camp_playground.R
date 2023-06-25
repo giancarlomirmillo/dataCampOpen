@@ -55,13 +55,8 @@ ggplot(ilMioPrimoDF, aes(x=variabile_anni, y=variabile_altezza)) +
 
 pie (ilMioPrimoDF$variabile_altezza, labels = variabile_altezza)
 
-# modello: trobare il modello migliore e le variabili più interessanti
-library (glmulti)
-library (dplyr)
-names (ilMioSecondoDFNumerico)
-ilMioSecondoDFNumerico <- as.data.frame(
-  select_if (ilMioSecondoDF, is.numeric)
-)
+# modello: rappresentazione smplificata della realtà che può capire un computer
+
 
 # il mio primo modello regressione lineare
 
@@ -71,6 +66,15 @@ regressione_modello <- lm  (media.voti ~ coscienziosità +apertura + stabilità.
 library (jtools)
 print (regressione_modello)
 plot_summs (regressione_modello)
+
+# un modello non basta! Devo provarne molti per vedere quale performa meglio
+library (glmulti)
+library (dplyr)
+
+# seleziono solo le variabili numeriche
+ilMioSecondoDFNumerico <- as.data.frame(
+  select_if (ilMioSecondoDF, is.numeric)
+)
 
 optimal_model <- glmulti (media.voti ~ coscienziosità +apertura + stabilità.emotiva + estroversione + 
                  amicalità + altezza + ore.studio + BMI, 
