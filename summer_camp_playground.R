@@ -9,9 +9,10 @@ ilMioPrimoDF <- data.frame(variabile_nome, variabile_anni, variabile_altezza)
 summary (ilMioPrimoDF)
 
 
-#leggo dati
-ilMioSecondoDF <- read.csv("https://github.com/giancarlomirmillo/dataCampOpen/blob/main/dfschool.csv",  nrows=100)
-ilMioSecondoDF <- NULL
+# Posso caricare un file da una repository (GitHub in questo caso
+# carico solo le prime 100 righe 
+ilMioSecondoDF <- read.csv ("https://raw.githubusercontent.com/giancarlomirmillo/dataCampOpen/main/dfschool.csv", nrows =100)
+
 
 # Seleziono le variabili numeriche
 ilMioPrimoDFNumerico <- select_if(ilMioPrimoDF, is.numeric)
