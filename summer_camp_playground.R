@@ -10,7 +10,7 @@ summary (ilMioPrimoDF)
 
 
 #leggo dati
-ilMioSecondoDF <- read.csv("/Users/giancarlo/Documents/FEM-PLIN/dfschool.csv",  nrows=100)
+ilMioSecondoDF <- read.csv("https://github.com/giancarlomirmillo/dataCampOpen/blob/main/dfschool.csv",  nrows=100)
 ilMioSecondoDF <- NULL
 
 # Seleziono le variabili numeriche
