@@ -101,4 +101,36 @@ weightable(optimal_model)[1:3,] %>%
 # parametri del modello migliore 
 optimal_model@objects[[2]]
 
+#####  Programmato da ChatGPT
+# il prompt : scrivi in R uno script per selezionare dal dataframe dfschool solo le variabili numeriche, 
+# escludere la variabile "id", e fare un clustering con kmeans e 3 cluster e 
+# visualizzare i grafici dei risultati 
+
+# Installa e carica il pacchetto per il clustering K-means
+install.packages("stats")
+library(stats)
+
+# Seleziona solo le variabili numeriche dal dataframe dfschool
+numeric_vars <- ilMioSecondoDF[, sapply(ilMioSecondoDF, is.numeric)]
+
+# Escludi la variabile "id"
+numeric_vars <- numeric_vars[, !(colnames(numeric_vars) %in% c("id"))]
+
+# Esegui il clustering K-means con 3 cluster
+set.seed(123)  # Imposta un seme casuale per riproducibilità
+k <- 3  # Numero di cluster
+kmeans_result <- kmeans(numeric_vars, centers = k)
+
+# Assegna le etichette di cluster ai dati
+cluster_labels <- kmeans_result$cluster
+
+# Aggiungi le etichette di cluster come variabile al dataframe originale
+ilMioSecondoDF$cluster <- cluster_labels
+head (ilMioSecondoDF, 10)
+# Visualizza i grafici dei risultati del clustering
+plot(numeric_vars, col = cluster_labels, pch = 19, main = "Clustering K-means con 3 cluster")
+
+# Per grafici bidimensionali, puoi specificare le variabili che vuoi visualizzare
+# Ad esempio, per visualizzare il clustering solo per le variabili "var1" e "var2"
+plot(numeric_vars$ore.studio, numeric_vars$media.voti, col = cluster_labels, pch = 19, main = "Clustering K-means con 3 cluster (ore.studio vs media.voti)")
 
