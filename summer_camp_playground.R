@@ -1,4 +1,7 @@
-#creo dati
+# Questo è il file di accompagnamento all'introduzione al linguaggio R del corso "Summer Data Camp 2023" di PLIN + FEM
+# ci sono le procedure di cui abbiamo parlato durante il corso
+
+# creo dati
 variabile_nome <- c("Anna", "Antonio", "Maria", "Giulio", "Anna")
 variabile_anni <- c(14, 17, 18, 15, 17)
 variabile_altezza <- c (164, 170,174, 166, 172)
@@ -76,6 +79,7 @@ ilMioSecondoDFNumerico <- as.data.frame(
   select_if (ilMioSecondoDF, is.numeric)
 )
 
+# cerco il modello migliore
 optimal_model <- glmulti (media.voti ~ coscienziosità +apertura + stabilità.emotiva + estroversione + 
                  amicalità + altezza + ore.studio + BMI, 
                  method = "g",
@@ -87,4 +91,14 @@ optimal_model <- glmulti (media.voti ~ coscienziosità +apertura + stabilità.em
                  confsetsize = 100 )
 print (optimal_model)
 plot (optimal_model, type = "s")
+
+# visualizzo i 3 modelli migliori
+library(flextable) 
+weightable(optimal_model)[1:3,] %>% 
+  regulartable() %>%       # beautifying tables
+  autofit()
+
+# parametri del modello migliore 
+optimal_model@objects[[2]]
+
 
