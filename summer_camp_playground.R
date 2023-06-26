@@ -132,5 +132,5 @@ plot(numeric_vars, col = cluster_labels, pch = 19, main = "Clustering K-means co
 
 # Per grafici bidimensionali, puoi specificare le variabili che vuoi visualizzare
 # Ad esempio, per visualizzare il clustering solo per le variabili "var1" e "var2"
-plot(numeric_vars$ore.studio, numeric_vars$media.voti, col = cluster_labels, pch = 19, main = "Clustering K-means con 3 cluster (ore.studio vs media.voti)")
+plot(numeric_vars$ore.studio, numeric_vars$media.voti, col = cluster_labels, pch = 19, main = "Clustering K-means con 3 cluster")
 
